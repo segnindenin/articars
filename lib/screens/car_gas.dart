@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CartHealth extends StatefulWidget {
-  const CartHealth({super.key});
+class CarGas extends StatefulWidget {
+  const CarGas({super.key});
 
   @override
-  State<CartHealth> createState() => _CartHealthState();
+  State<CarGas> createState() => _CarGasState();
 }
 
-class _CartHealthState extends State<CartHealth> {
+class _CarGasState extends State<CarGas> {
   late String token = '';
   var backc = const Color.fromARGB(255, 237, 235, 229);
   var backb = const Color.fromARGB(255, 26, 56, 205);
@@ -33,7 +33,7 @@ class _CartHealthState extends State<CartHealth> {
       appBar: AppBar(
         backgroundColor: backb,
         title: Text(
-          'Entretien du AA345AC',
+          'Carburant',
           style: GoogleFonts.openSans(
               fontSize: 23, color: Colors.white, fontWeight: FontWeight.w500),
         ),
@@ -192,7 +192,7 @@ class _CartHealthState extends State<CartHealth> {
                         )),
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => const CartHealth()));
+                          builder: (ctx) => const CarGas()));
                       debugPrint("Tapped on container Suivie");
                     },
                   ),
