@@ -1,0 +1,47 @@
+name: articars
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.2 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  google_fonts: ^6.1.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/car_icon.png
+    - assets/images/home.jpg
+  
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Regular.ttf
+        - asset: assets/fonts/OpenSans-Bold.ttf
+          weight: 700
+          # style: italic
+    - family: RobotoSlab
+      fonts:
+        - asset: assets/fonts/RobotoSlab-Bold.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+    - family: Hedvig
+      fonts:
+        - asset: assets/fonts/HedvigLettersSerif_14pt-Regular.ttf
+        - asset: assets/fonts/HedvigLettersSerif_18pt-Regular.ttf
+          weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
