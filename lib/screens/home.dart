@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'cart_health.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'car_gas.dart';
+import 'suivie_car.dart';
 // import 'package:http/http.dart' as http;
 // import 'dart:convert';
 
@@ -95,6 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         )),
                     onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => const SuivieCar()));
                       debugPrint("Tapped on container Suivie");
                     },
                   ),
@@ -120,8 +123,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         )),
                     onTap: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (ctx) => const CartHealth()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => const CartHealth()));
                       debugPrint("Tapped on container Entretien");
                     },
                   ),
@@ -147,8 +150,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         )),
                     onTap: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (ctx) => const CarGas()));
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (ctx) => const CarGas()));
                       debugPrint("Tapped on container Carburant");
                     },
                   ),

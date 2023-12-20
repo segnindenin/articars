@@ -32,7 +32,7 @@ class _UserRegisterState extends State<UserRegister> {
             TextField(
               controller: _firstnameController,
               decoration: InputDecoration(
-                border: const OutlineInputBorder(),
+                // border: const OutlineInputBorder(),
                 icon: const Icon(Icons.person),
                 label: Text(
                   'Votre nom',
