@@ -34,8 +34,32 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(children: [
             Column(
               children: [
-                Image.asset(
-                  'assets/images/home.jpg',
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/home.jpg',
+                      height: 300.0,
+                      fit: BoxFit.cover,
+                    ),
+                    const Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CircleAvatar(
+                          radius: 60.0,
+                          backgroundImage: AssetImage('assets/image.jpg'),
+                        ),
+                        SizedBox(height: 8.0),
+                        Text(
+                          'Bienvenu, HENRI',
+                          style: TextStyle(
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -43,11 +67,10 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 60.0, // Hauteur de la ligne
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount:
-                    5, // Remplacez cela par le nombre d'éléments que vous avez
+                itemCount: 5,
                 itemBuilder: (context, index) {
                   return Container(
-                    width: 130.0, // Largeur de chaque élément
+                    width: 130.0,
                     margin: const EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -82,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             const Icon(
                               Icons.text_snippet_sharp,
-                              size: 90,
+                              size: 70,
                               color: Color.fromARGB(255, 111, 187, 215),
                             ),
                             Text(
@@ -109,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             const Icon(
                               Icons.recycling,
-                              size: 90,
+                              size: 70,
                               color: Color.fromARGB(255, 111, 187, 215),
                             ),
                             Text(
@@ -136,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             const Icon(
                               Icons.local_gas_station,
-                              size: 90,
+                              size: 70,
                               color: Color.fromARGB(255, 111, 187, 215),
                             ),
                             Text(
@@ -163,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             const Icon(
                               Icons.settings_outlined,
-                              size: 90,
+                              size: 70,
                               color: Color.fromARGB(255, 111, 187, 215),
                             ),
                             Text(
