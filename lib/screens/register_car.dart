@@ -28,7 +28,7 @@ class _CarRegisterState extends State<CarRegister> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -37,19 +37,20 @@ class _CarRegisterState extends State<CarRegister> {
             ),
             Text(
               'Votre Garage Principal',
-              style: GoogleFonts.boogaloo(fontSize: 40),
+              style: GoogleFonts.boogaloo(fontSize: 30),
             ),
             const SizedBox(
               height: 50,
             ),
             TextField(
+              style: const TextStyle(fontSize: 8),
               controller: _firstnameController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
                 label: Text(
                   'Immatriculation',
-                  style: GoogleFonts.openSans(fontSize: 20),
+                  style: GoogleFonts.openSans(fontSize: 17),
                 ),
                 filled: true,
               ),
@@ -58,13 +59,14 @@ class _CarRegisterState extends State<CarRegister> {
               height: 10,
             ),
             TextField(
+              style: const TextStyle(fontSize: 8),
               controller: _secondnameController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
                 label: Text(
                   'Modèle',
-                  style: GoogleFonts.openSans(fontSize: 20),
+                  style: GoogleFonts.openSans(fontSize: 17),
                 ),
                 filled: true,
               ),
@@ -73,13 +75,14 @@ class _CarRegisterState extends State<CarRegister> {
               height: 10,
             ),
             TextField(
+              style: const TextStyle(fontSize: 8),
               controller: _compagnieController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
                 label: Text(
                   'Type',
-                  style: GoogleFonts.openSans(fontSize: 20),
+                  style: GoogleFonts.openSans(fontSize: 17),
                 ),
                 filled: true,
               ),
@@ -88,13 +91,14 @@ class _CarRegisterState extends State<CarRegister> {
               height: 10,
             ),
             TextField(
+              style: const TextStyle(fontSize: 8),
               controller: _compagnieController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
                 label: Text(
                   'Numéro de Châssis',
-                  style: GoogleFonts.openSans(fontSize: 20),
+                  style: GoogleFonts.openSans(fontSize: 17),
                 ),
                 filled: true,
               ),
@@ -103,13 +107,14 @@ class _CarRegisterState extends State<CarRegister> {
               height: 10,
             ),
             TextField(
+              style: const TextStyle(fontSize: 8),
               controller: _compagnieController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
                 label: Text(
                   'Couleur(s)',
-                  style: GoogleFonts.openSans(fontSize: 20),
+                  style: GoogleFonts.openSans(fontSize: 17),
                 ),
                 filled: true,
               ),
@@ -118,13 +123,14 @@ class _CarRegisterState extends State<CarRegister> {
               height: 10,
             ),
             TextField(
+              style: const TextStyle(fontSize: 8),
               controller: _compagnieController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
                 label: Text(
                   'Date de mise en circulation',
-                  style: GoogleFonts.openSans(fontSize: 20),
+                  style: GoogleFonts.openSans(fontSize: 17),
                 ),
                 filled: true,
               ),
@@ -133,13 +139,14 @@ class _CarRegisterState extends State<CarRegister> {
               height: 10,
             ),
             TextField(
+              style: const TextStyle(fontSize: 8),
               controller: _compagnieController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
                 label: Text(
                   'Type de Pneu (Taille)',
-                  style: GoogleFonts.openSans(fontSize: 20),
+                  style: GoogleFonts.openSans(fontSize: 17),
                 ),
                 filled: true,
               ),
@@ -155,11 +162,10 @@ class _CarRegisterState extends State<CarRegister> {
                   width: 15,
                 ),
                 DropdownMenu<List>(
-                  // width:360,
                   requestFocusOnTap: true,
                   label: const Text(
                     'Type de Caburant',
-                    style: TextStyle(fontFamily: 'OpenSans', fontSize: 20),
+                    style: TextStyle(fontFamily: 'OpenSans', fontSize: 17),
                   ),
                   dropdownMenuEntries: caburantOption.map((String value) {
                     return DropdownMenuEntry(
@@ -178,13 +184,14 @@ class _CarRegisterState extends State<CarRegister> {
               height: 10,
             ),
             TextField(
+              style: const TextStyle(fontSize: 8),
               controller: _compagnieController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
                 label: Text(
                   'Propiétaire Précedent',
-                  style: GoogleFonts.openSans(fontSize: 20),
+                  style: GoogleFonts.openSans(fontSize: 17),
                 ),
                 filled: true,
               ),
