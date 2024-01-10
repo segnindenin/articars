@@ -1,3 +1,4 @@
+import 'package:articars/model/Car.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'home.dart';
@@ -14,9 +15,15 @@ class CarRegister extends StatefulWidget {
 }
 
 class _CarRegisterState extends State<CarRegister> {
-  final TextEditingController _firstnameController = TextEditingController();
-  final TextEditingController _secondnameController = TextEditingController();
-  final TextEditingController _compagnieController = TextEditingController();
+  final TextEditingController _immatriculationController =
+      TextEditingController();
+  final TextEditingController _modeleController = TextEditingController();
+  final TextEditingController _typeController = TextEditingController();
+  final TextEditingController _numeroController = TextEditingController();
+  final TextEditingController _couleurController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _pneuController = TextEditingController();
+  final TextEditingController _proprioController = TextEditingController();
   // String? _selectedNomCoffret;
   final List<String> caburantOption = [
     'Petrol',
@@ -44,7 +51,7 @@ class _CarRegisterState extends State<CarRegister> {
             ),
             TextField(
               style: const TextStyle(fontSize: 8),
-              controller: _firstnameController,
+              controller: _immatriculationController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
@@ -60,7 +67,7 @@ class _CarRegisterState extends State<CarRegister> {
             ),
             TextField(
               style: const TextStyle(fontSize: 8),
-              controller: _secondnameController,
+              controller: _modeleController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
@@ -76,7 +83,7 @@ class _CarRegisterState extends State<CarRegister> {
             ),
             TextField(
               style: const TextStyle(fontSize: 8),
-              controller: _compagnieController,
+              controller: _typeController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
@@ -92,7 +99,7 @@ class _CarRegisterState extends State<CarRegister> {
             ),
             TextField(
               style: const TextStyle(fontSize: 8),
-              controller: _compagnieController,
+              controller: _numeroController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
@@ -108,7 +115,7 @@ class _CarRegisterState extends State<CarRegister> {
             ),
             TextField(
               style: const TextStyle(fontSize: 8),
-              controller: _compagnieController,
+              controller: _couleurController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
@@ -124,7 +131,7 @@ class _CarRegisterState extends State<CarRegister> {
             ),
             TextField(
               style: const TextStyle(fontSize: 8),
-              controller: _compagnieController,
+              controller: _dateController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
@@ -140,7 +147,7 @@ class _CarRegisterState extends State<CarRegister> {
             ),
             TextField(
               style: const TextStyle(fontSize: 8),
-              controller: _compagnieController,
+              controller: _pneuController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
@@ -185,7 +192,7 @@ class _CarRegisterState extends State<CarRegister> {
             ),
             TextField(
               style: const TextStyle(fontSize: 8),
-              controller: _compagnieController,
+              controller: _proprioController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
@@ -198,10 +205,7 @@ class _CarRegisterState extends State<CarRegister> {
             ),
             const SizedBox(height: 70.0),
             ElevatedButton.icon(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (ctx) => const HomeScreen()));
-              },
+              onPressed: _validateFields,
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size(270, 50),
                 backgroundColor: const Color.fromARGB(255, 26, 56, 205),
@@ -218,6 +222,46 @@ class _CarRegisterState extends State<CarRegister> {
           ],
         ),
       ),
+    );
+  }
+
+  // valider les informations
+  void _validateFields() {
+    if (_immatriculationController.text.isEmpty ||
+        _modeleController.text.isEmpty ||
+        _typeController.text.isEmpty ||
+        _numeroController.text.isEmpty ||
+        _couleurController.text.isEmpty ||
+        _proprioController.text.isEmpty ||
+        _pneuController.text.isEmpty ||
+        _dateController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Veuillez remplir tous les champs obligatoires'),
+        ),
+      );
+    } else {
+      // Si tous les champs sont remplis
+      _saveCarData();
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (ctx) => const HomeScreen()),
+      );
+    }
+  }
+
+  void _saveCarData() async {
+    // Créez une instance de la classe CarDatabase
+    final carDatabase = CarDatabase();
+
+    await carDatabase.saveCarData(
+      immatriculation: _immatriculationController.text,
+      modele: _modeleController.text,
+      type: _typeController.text,
+      numero: _numeroController.text,
+      couleur: _couleurController.text,
+      date: _dateController.text,
+      pneu: _pneuController.text,
+      proprio: _proprioController.text,
     );
   }
 }
