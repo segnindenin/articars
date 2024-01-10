@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         CircleAvatar(
-                          radius: 50.0,
+                          radius: 60.0,
                           backgroundImage: AssetImage('assets/image.jpg'),
                         ),
                         SizedBox(height: 8.0),
