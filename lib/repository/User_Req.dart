@@ -13,7 +13,6 @@ class User {
 // enregistrer les information de la personne
   static Future<void> saveUserData({
     required String firstName,
-    required String lastName,
     required String address,
     required String location,
     required String responsible,

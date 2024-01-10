@@ -1,3 +1,4 @@
+import 'package:articars/repository/User_Req.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'register_car.dart';
@@ -6,17 +7,17 @@ import 'register_car.dart';
 class GarageRegister extends StatefulWidget {
   const GarageRegister({super.key});
 
-  // final String token;
-  // const GarageRegister({super.key, required this.token});
-
   @override
   State<GarageRegister> createState() => _GarageRegisterState();
 }
 
 class _GarageRegisterState extends State<GarageRegister> {
   final TextEditingController _firstnameController = TextEditingController();
-  final TextEditingController _secondnameController = TextEditingController();
-  final TextEditingController _compagnieController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _locationController = TextEditingController();
+  final TextEditingController _responsibleController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _faxController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,7 @@ class _GarageRegisterState extends State<GarageRegister> {
             ),
             TextField(
               style: const TextStyle(fontSize: 8),
-              controller: _secondnameController,
+              controller: _addressController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
@@ -70,7 +71,7 @@ class _GarageRegisterState extends State<GarageRegister> {
             ),
             TextField(
               style: const TextStyle(fontSize: 8),
-              controller: _compagnieController,
+              controller: _locationController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
@@ -86,7 +87,7 @@ class _GarageRegisterState extends State<GarageRegister> {
             ),
             TextField(
               style: const TextStyle(fontSize: 8),
-              controller: _compagnieController,
+              controller: _responsibleController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
@@ -102,7 +103,7 @@ class _GarageRegisterState extends State<GarageRegister> {
             ),
             TextField(
               style: const TextStyle(fontSize: 8),
-              controller: _compagnieController,
+              controller: _phoneController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
@@ -118,7 +119,7 @@ class _GarageRegisterState extends State<GarageRegister> {
             ),
             TextField(
               style: const TextStyle(fontSize: 8),
-              controller: _compagnieController,
+              controller: _faxController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
@@ -131,10 +132,7 @@ class _GarageRegisterState extends State<GarageRegister> {
             ),
             const SizedBox(height: 70.0),
             ElevatedButton.icon(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (ctx) => const CarRegister()));
-              },
+              onPressed: _validateFields,
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size(270, 50),
                 backgroundColor: const Color.fromARGB(255, 26, 56, 205),
@@ -151,6 +149,39 @@ class _GarageRegisterState extends State<GarageRegister> {
           ],
         ),
       ),
+    );
+  }
+
+  // valider les informations
+  void _validateFields() {
+    if (_firstnameController.text.isEmpty ||
+        _addressController.text.isEmpty ||
+        _locationController.text.isEmpty ||
+        _responsibleController.text.isEmpty ||
+        _phoneController.text.isEmpty ||
+        _faxController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Veuillez remplir tous les champs obligatoires'),
+        ),
+      );
+    } else {
+      // Si tous les champs sont remplis
+      _saveUserData();
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (ctx) => const CarRegister()),
+      );
+    }
+  }
+
+  void _saveUserData() {
+    User.saveUserData(
+      firstName: _firstnameController.text,
+      address: _addressController.text,
+      location: _locationController.text,
+      responsible: _responsibleController.text,
+      phone: _phoneController.text,
+      fax: _faxController.text,
     );
   }
 }
