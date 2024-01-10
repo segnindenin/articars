@@ -26,17 +26,25 @@ class _GarageRegisterState extends State<GarageRegister> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const SizedBox(height: 50,),
-            Text('Votre Garage Principal', style: GoogleFonts.boogaloo(fontSize: 40),),
-            const SizedBox(height: 50,),
+            const SizedBox(
+              height: 50,
+            ),
+            Text(
+              'Votre Garage Principal',
+              style: GoogleFonts.boogaloo(fontSize: 30),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
             TextField(
+              style: const TextStyle(fontSize: 8),
               controller: _firstnameController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
                 label: Text(
                   'Nom',
-                  style: GoogleFonts.openSans(fontSize: 20),
+                  style: GoogleFonts.openSans(fontSize: 17),
                 ),
                 filled: true,
               ),
@@ -45,13 +53,14 @@ class _GarageRegisterState extends State<GarageRegister> {
               height: 10,
             ),
             TextField(
+              style: const TextStyle(fontSize: 8),
               controller: _secondnameController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
                 label: Text(
                   'Address',
-                  style:  GoogleFonts.openSans(fontSize: 20),
+                  style: GoogleFonts.openSans(fontSize: 17),
                 ),
                 filled: true,
               ),
@@ -60,13 +69,14 @@ class _GarageRegisterState extends State<GarageRegister> {
               height: 10,
             ),
             TextField(
+              style: const TextStyle(fontSize: 8),
               controller: _compagnieController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
                 label: Text(
                   'Localisation',
-                  style:  GoogleFonts.openSans(fontSize: 20),
+                  style: GoogleFonts.openSans(fontSize: 17),
                 ),
                 filled: true,
               ),
@@ -75,13 +85,14 @@ class _GarageRegisterState extends State<GarageRegister> {
               height: 10,
             ),
             TextField(
+              style: const TextStyle(fontSize: 8),
               controller: _compagnieController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
                 label: Text(
                   'Nom du Responsable',
-                  style:  GoogleFonts.openSans(fontSize: 20),
+                  style: GoogleFonts.openSans(fontSize: 17),
                 ),
                 filled: true,
               ),
@@ -90,13 +101,14 @@ class _GarageRegisterState extends State<GarageRegister> {
               height: 10,
             ),
             TextField(
+              style: const TextStyle(fontSize: 8),
               controller: _compagnieController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
                 label: Text(
                   'Téléphone Celulaire',
-                  style:  GoogleFonts.openSans(fontSize: 20),
+                  style: GoogleFonts.openSans(fontSize: 17),
                 ),
                 filled: true,
               ),
@@ -105,13 +117,14 @@ class _GarageRegisterState extends State<GarageRegister> {
               height: 10,
             ),
             TextField(
+              style: const TextStyle(fontSize: 8),
               controller: _compagnieController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 icon: const Icon(Icons.edit_note),
                 label: Text(
                   'Téléphone Fax',
-                  style:  GoogleFonts.openSans(fontSize: 20),
+                  style: GoogleFonts.openSans(fontSize: 17),
                 ),
                 filled: true,
               ),
@@ -119,15 +132,21 @@ class _GarageRegisterState extends State<GarageRegister> {
             const SizedBox(height: 70.0),
             ElevatedButton.icon(
               onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (ctx) => const CarRegister()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (ctx) => const CarRegister()));
               },
               style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(270, 50),
-                  backgroundColor: const Color.fromARGB(255, 26, 56, 205),
-                      ),
-              icon: const Icon(Icons.skip_next),
-              label: Text("Suivant", style: GoogleFonts.openSans(fontSize:20, fontWeight:FontWeight.bold),), 
+                fixedSize: const Size(270, 50),
+                backgroundColor: const Color.fromARGB(255, 26, 56, 205),
+              ),
+              icon: const Icon(Icons.skip_next, color: Colors.white),
+              label: Text(
+                "Suivant",
+                style: GoogleFonts.openSans(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         ),
