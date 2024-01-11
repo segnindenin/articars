@@ -1,3 +1,4 @@
+import 'package:articars/model/User.dart';
 import 'package:articars/repository/User_Req.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -174,8 +175,10 @@ class _GarageRegisterState extends State<GarageRegister> {
     }
   }
 
-  void _saveUserData() {
-    User.saveUserData(
+  void _saveUserData() async {
+    UserDatabase userDatabase = UserDatabase();
+    await userDatabase.initializeDatabase();
+    await userDatabase.saveUserData(
       firstName: _firstnameController.text,
       address: _addressController.text,
       location: _locationController.text,
