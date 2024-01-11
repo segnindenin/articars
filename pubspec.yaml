@@ -27,6 +27,7 @@ flutter:
   assets:
     - assets/images/car_icon.png
     - assets/images/home.jpg
+    - assets/
   
   fonts:
     - family: OpenSans
