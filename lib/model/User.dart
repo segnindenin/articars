@@ -11,29 +11,30 @@ class UserDatabase {
   static const String userResponsibleKey = 'userResponsible';
   static const String userPhoneKey = 'userPhone';
   static const String userFaxKey = 'userFax';
-  static const String carImmatriculationKey = 'carImmatriculation';
 
   Future<void> initializeDatabase() async {
+    print('Initializing database...');
     _database = await openDatabase(
       join(await getDatabasesPath(), 'user_database.db'),
       onCreate: (db, version) {
+        print('Creating user_table...');
         return db.execute(
           '''
-          CREATE TABLE $tableName(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            $userFirstNameKey TEXT,
-            $userAddressKey TEXT,
-            $userLocationKey TEXT,
-            $userResponsibleKey TEXT,
-            $userPhoneKey TEXT,
-            $userFaxKey TEXT,
-            $carImmatriculationKey TEXT
-          )
-          ''',
+        CREATE TABLE $tableName(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          $userFirstNameKey TEXT,
+          $userAddressKey TEXT,
+          $userLocationKey TEXT,
+          $userResponsibleKey TEXT,
+          $userPhoneKey TEXT,
+          $userFaxKey TEXT
+        )
+        ''',
         );
       },
       version: 1,
     );
+    print('Database initialized.');
   }
 
   Future<void> saveUserData({
@@ -47,43 +48,14 @@ class UserDatabase {
     await _database.insert(
       tableName,
       {
-        UserDatabase.userFirstNameKey: firstName,
-        UserDatabase.userAddressKey: address,
-        UserDatabase.userLocationKey: location,
-        UserDatabase.userResponsibleKey: responsible,
-        UserDatabase.userPhoneKey: phone,
-        UserDatabase.userFaxKey: fax,
+        userFirstNameKey: firstName,
+        userAddressKey: address,
+        userLocationKey: location,
+        userResponsibleKey: responsible,
+        userPhoneKey: phone,
+        userFaxKey: fax,
       },
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
-
-  Future<Map<String, String>> getUserData() async {
-    final List<Map<String, dynamic>> maps = await _database.query(tableName);
-    if (maps.isEmpty) return {};
-
-    return Map.from(maps.first);
-  }
-
-  Future<void> saveCarData(String immatriculation) async {
-    await _database.update(
-      tableName,
-      {UserDatabase.carImmatriculationKey: immatriculation},
-    );
-  }
-
-  Future<String?> getCarImmatriculation() async {
-    final List<Map<String, dynamic>> maps = await _database.query(tableName);
-    if (maps.isEmpty) return null;
-
-    return maps.first[UserDatabase.carImmatriculationKey] as String?;
-  }
 }
-
-  // Map<String, String> userData = await userDatabase.getUserData();
-  // print('User Data: $userData');
-
-  // await userDatabase.saveCarData('ABC123');
-
-  // String? carImmatriculation = await userDatabase.getCarImmatriculation();
-  // print('Car Immatriculation: $carImmatriculation');
