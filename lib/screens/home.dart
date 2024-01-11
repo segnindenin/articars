@@ -42,20 +42,30 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 300.0,
                       fit: BoxFit.cover,
                     ),
-                    const Column(
+                    Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        CircleAvatar(
-                          radius: 60.0,
-                          backgroundImage: AssetImage('assets/image.jpg'),
+                        Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: Colors.blue,
+                              width: 4.0,
+                            ),
+                          ),
+                          child: const CircleAvatar(
+                            radius: 60.0,
+                            backgroundImage: AssetImage('assets/image.jpg'),
+                          ),
                         ),
                         SizedBox(height: 8.0),
-                        Text(
+                        const Text(
                           'Bienvenu, HENRI',
                           style: TextStyle(
-                              fontSize: 25.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ],
                     ),
