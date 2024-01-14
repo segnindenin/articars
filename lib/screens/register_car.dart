@@ -251,17 +251,17 @@ class _CarRegisterState extends State<CarRegister> {
 
   void _saveCarData() async {
     // Créez une instance de la classe CarDatabase
-    final carDatabase = CarDatabase();
+    // final carDatabase = CarDatabase();
 
-    await carDatabase.saveCarData(
-      immatriculation: _immatriculationController.text,
-      modele: _modeleController.text,
-      type: _typeController.text,
-      numero: _numeroController.text,
-      couleur: _couleurController.text,
-      date: _dateController.text,
-      pneu: _pneuController.text,
-      proprio: _proprioController.text,
-    );
+    // await carDatabase.saveCarData(
+    //   immatriculation: _immatriculationController.text,
+    //   modele: _modeleController.text,
+    //   type: _typeController.text,
+    //   numero: _numeroController.text,
+    //   couleur: _couleurController.text,
+    //   date: _dateController.text,
+    //   pneu: _pneuController.text,
+    //   proprio: _proprioController.text,
+    // );
   }
 }
