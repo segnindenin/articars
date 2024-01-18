@@ -154,24 +154,24 @@ class _GarageRegisterState extends State<GarageRegister> {
 
   // valider les informations
   void _validateFields() {
-    if (_firstnameController.text.isEmpty ||
-        _addressController.text.isEmpty ||
-        _locationController.text.isEmpty ||
-        _responsibleController.text.isEmpty ||
-        _phoneController.text.isEmpty ||
-        _faxController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Veuillez remplir tous les champs obligatoires'),
-        ),
-      );
-    } else {
-      // Si tous les champs sont remplis
-      _saveUserData();
-      Navigator.of(context).push(
-        MaterialPageRoute(builder: (ctx) => const CarRegister()),
-      );
-    }
+    // if (_firstnameController.text.isEmpty ||
+    //     _addressController.text.isEmpty ||
+    //     _locationController.text.isEmpty ||
+    //     _responsibleController.text.isEmpty ||
+    //     _phoneController.text.isEmpty ||
+    //     _faxController.text.isEmpty) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(
+    //       content: Text('Veuillez remplir tous les champs obligatoires'),
+    //     ),
+    //   );
+    // } else {
+    // Si tous les champs sont remplis
+    _saveUserData();
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (ctx) => const CarRegister()),
+    );
+    // }
   }
 
   void _saveUserData() async {
