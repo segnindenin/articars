@@ -38,7 +38,7 @@ class _GarageRegisterState extends State<GarageRegister> {
               height: 50,
             ),
             TextField(
-              style: const TextStyle(fontSize: 10),
+              style: const TextStyle(fontSize: 17),
               controller: _firstnameController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -54,7 +54,7 @@ class _GarageRegisterState extends State<GarageRegister> {
               height: 10,
             ),
             TextField(
-              style: const TextStyle(fontSize: 10),
+              style: const TextStyle(fontSize: 17),
               controller: _addressController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -70,7 +70,7 @@ class _GarageRegisterState extends State<GarageRegister> {
               height: 10,
             ),
             TextField(
-              style: const TextStyle(fontSize: 10),
+              style: const TextStyle(fontSize: 17),
               controller: _locationController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -86,7 +86,7 @@ class _GarageRegisterState extends State<GarageRegister> {
               height: 10,
             ),
             TextField(
-              style: const TextStyle(fontSize: 10),
+              style: const TextStyle(fontSize: 17),
               controller: _responsibleController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -102,7 +102,7 @@ class _GarageRegisterState extends State<GarageRegister> {
               height: 10,
             ),
             TextField(
-              style: const TextStyle(fontSize: 10),
+              style: const TextStyle(fontSize: 17),
               controller: _phoneController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -118,7 +118,7 @@ class _GarageRegisterState extends State<GarageRegister> {
               height: 10,
             ),
             TextField(
-              style: const TextStyle(fontSize: 10),
+              style: const TextStyle(fontSize: 17),
               controller: _faxController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -161,7 +161,7 @@ class _GarageRegisterState extends State<GarageRegister> {
         _phoneController.text.isEmpty ||
         _faxController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Veuillez remplir tous les champs obligatoires'),
         ),
       );

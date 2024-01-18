@@ -105,19 +105,19 @@ class _SuivieCarState extends State<SuivieCar> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'numero de la police',
                                     style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  Text(
+                                  const Text(
                                     '5e5a23e9-1761-4a17-ad2b-6f57ed79e3c9',
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500),
                                   ),
-                                  Row(
+                                  const Row(
                                     children: [
                                       SizedBox(
                                         width: 200,
@@ -134,7 +134,7 @@ class _SuivieCarState extends State<SuivieCar> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      Column(
+                                      const Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
@@ -145,7 +145,7 @@ class _SuivieCarState extends State<SuivieCar> {
                                                   fontWeight: FontWeight.w500))
                                         ],
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 90,
                                       ),
                                       ElevatedButton.icon(
@@ -156,7 +156,7 @@ class _SuivieCarState extends State<SuivieCar> {
                                           onPressed: () {},
                                           icon:
                                               const Icon(Icons.calendar_month),
-                                          label: Text('2 Sept. 2023'))
+                                          label: const Text('2 Sept. 2023'))
                                     ],
                                   )
                                 ],
@@ -164,17 +164,6 @@ class _SuivieCarState extends State<SuivieCar> {
                         ],
                       ),
                     ),
-
-
-
-
-
-
-
-
-
-
-
                     Container(
                       width: 365,
                       height: 200,
@@ -247,19 +236,19 @@ class _SuivieCarState extends State<SuivieCar> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'numero de la police',
                                     style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  Text(
+                                  const Text(
                                     '5e5a23e9-1761-4a17-ad2b-6f57ed79e3c9',
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500),
                                   ),
-                                  Row(
+                                  const Row(
                                     children: [
                                       SizedBox(
                                         width: 200,
@@ -276,7 +265,7 @@ class _SuivieCarState extends State<SuivieCar> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      Column(
+                                      const Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
@@ -287,7 +276,7 @@ class _SuivieCarState extends State<SuivieCar> {
                                                   fontWeight: FontWeight.w500))
                                         ],
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 90,
                                       ),
                                       ElevatedButton.icon(
@@ -298,7 +287,7 @@ class _SuivieCarState extends State<SuivieCar> {
                                           onPressed: () {},
                                           icon:
                                               const Icon(Icons.calendar_month),
-                                          label: Text('2 Sept. 2023'))
+                                          label: const Text('2 Sept. 2023'))
                                     ],
                                   )
                                 ],
@@ -306,17 +295,6 @@ class _SuivieCarState extends State<SuivieCar> {
                         ],
                       ),
                     ),
-
-
-
-
-
-
-
-
-
-
-
                     Container(
                       width: 365,
                       height: 200,
@@ -389,19 +367,19 @@ class _SuivieCarState extends State<SuivieCar> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'numero de la police',
                                     style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  Text(
+                                  const Text(
                                     '5e5a23e9-1761-4a17-ad2b-6f57ed79e3c9',
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500),
                                   ),
-                                  Row(
+                                  const Row(
                                     children: [
                                       SizedBox(
                                         width: 200,
@@ -418,7 +396,7 @@ class _SuivieCarState extends State<SuivieCar> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      Column(
+                                      const Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
@@ -429,7 +407,7 @@ class _SuivieCarState extends State<SuivieCar> {
                                                   fontWeight: FontWeight.w500))
                                         ],
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 90,
                                       ),
                                       ElevatedButton.icon(
@@ -440,7 +418,7 @@ class _SuivieCarState extends State<SuivieCar> {
                                           onPressed: () {},
                                           icon:
                                               const Icon(Icons.calendar_month),
-                                          label: Text('2 Sept. 2023'))
+                                          label: const Text('2 Sept. 2023'))
                                     ],
                                   )
                                 ],

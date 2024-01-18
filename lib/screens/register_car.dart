@@ -50,7 +50,7 @@ class _CarRegisterState extends State<CarRegister> {
               height: 50,
             ),
             TextField(
-              style: const TextStyle(fontSize: 8),
+              style: const TextStyle(fontSize: 17),
               controller: _immatriculationController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -66,7 +66,7 @@ class _CarRegisterState extends State<CarRegister> {
               height: 10,
             ),
             TextField(
-              style: const TextStyle(fontSize: 8),
+              style: const TextStyle(fontSize: 17),
               controller: _modeleController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -82,7 +82,7 @@ class _CarRegisterState extends State<CarRegister> {
               height: 10,
             ),
             TextField(
-              style: const TextStyle(fontSize: 8),
+              style: const TextStyle(fontSize: 17),
               controller: _typeController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -98,7 +98,7 @@ class _CarRegisterState extends State<CarRegister> {
               height: 10,
             ),
             TextField(
-              style: const TextStyle(fontSize: 8),
+              style: const TextStyle(fontSize: 17),
               controller: _numeroController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -114,7 +114,7 @@ class _CarRegisterState extends State<CarRegister> {
               height: 10,
             ),
             TextField(
-              style: const TextStyle(fontSize: 8),
+              style: const TextStyle(fontSize: 17),
               controller: _couleurController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -130,7 +130,7 @@ class _CarRegisterState extends State<CarRegister> {
               height: 10,
             ),
             TextField(
-              style: const TextStyle(fontSize: 8),
+              style: const TextStyle(fontSize: 17),
               controller: _dateController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -146,7 +146,7 @@ class _CarRegisterState extends State<CarRegister> {
               height: 10,
             ),
             TextField(
-              style: const TextStyle(fontSize: 8),
+              style: const TextStyle(fontSize: 17),
               controller: _pneuController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -191,7 +191,7 @@ class _CarRegisterState extends State<CarRegister> {
               height: 10,
             ),
             TextField(
-              style: const TextStyle(fontSize: 8),
+              style: const TextStyle(fontSize: 17),
               controller: _proprioController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),

@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             backgroundImage: AssetImage('assets/image.jpg'),
                           ),
                         ),
-                        SizedBox(height: 8.0),
+                        const SizedBox(height: 8.0),
                         const Text(
                           'Bienvenu, HENRI',
                           style: TextStyle(

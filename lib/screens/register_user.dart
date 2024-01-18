@@ -36,6 +36,7 @@ class _UserRegisterState extends State<UserRegister> {
               height: 100,
             ),
             TextField(
+              style: GoogleFonts.openSans(fontSize: 20),
               controller: _firstnameController,
               decoration: InputDecoration(
                 // border: const OutlineInputBorder(),
@@ -51,6 +52,7 @@ class _UserRegisterState extends State<UserRegister> {
               height: 10,
             ),
             TextField(
+              style: GoogleFonts.openSans(fontSize: 20),
               controller: _secondnameController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -66,6 +68,7 @@ class _UserRegisterState extends State<UserRegister> {
               height: 10,
             ),
             TextField(
+              style: GoogleFonts.openSans(fontSize: 20),
               controller: _compagnieController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),

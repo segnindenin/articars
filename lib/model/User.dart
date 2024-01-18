@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -13,11 +14,11 @@ class UserDatabase {
   static const String userFaxKey = 'userFax';
 
   Future<void> initializeDatabase() async {
-    print('Initializing database...');
+    debugPrint('Initializing database...');
     _database = await openDatabase(
       join(await getDatabasesPath(), 'user_database.db'),
       onCreate: (db, version) {
-        print('Creating user_table...');
+        debugPrint('Creating user_table...');
         return db.execute(
           '''
         CREATE TABLE $tableName(
@@ -34,7 +35,7 @@ class UserDatabase {
       },
       version: 1,
     );
-    print('Database initialized.');
+    debugPrint('Database initialized.');
   }
 
   Future<void> saveUserData({
