@@ -13,6 +13,29 @@ class _SuivieCarState extends State<SuivieCar> {
   var backc = const Color.fromARGB(255, 237, 235, 229);
   var backb = const Color.fromARGB(255, 26, 56, 205);
 
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext bc) {
+        return Container(
+          height: MediaQuery.of(context).size.height * .60, // Hauteur du pop-up
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              children: <Widget>[
+                // Ajoutez ici les éléments que vous souhaitez afficher dans le pop-up
+                Text("Détails supplémentaires",
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                // ... (autres éléments)
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +56,7 @@ class _SuivieCarState extends State<SuivieCar> {
                 height: 200 * 5,
                 child: Column(
                   children: <Widget>[
+                    // 'Asurance Auto'
                     Container(
                       width: 365,
                       height: 200,
@@ -70,7 +94,9 @@ class _SuivieCarState extends State<SuivieCar> {
                                   ),
                                   IconButton(
                                       iconSize: 40,
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        _showBottomSheet(context);
+                                      },
                                       icon: const Icon(
                                         Icons.add_circle_outline_outlined,
                                         color: Colors.white,
@@ -164,6 +190,7 @@ class _SuivieCarState extends State<SuivieCar> {
                         ],
                       ),
                     ),
+                    // 'Visite Technique'
                     Container(
                       width: 365,
                       height: 200,
@@ -295,6 +322,7 @@ class _SuivieCarState extends State<SuivieCar> {
                         ],
                       ),
                     ),
+                    // 'Vignette Auto'
                     Container(
                       width: 365,
                       height: 200,
