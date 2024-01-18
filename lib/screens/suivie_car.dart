@@ -147,7 +147,7 @@ class _SuivieCarState extends State<SuivieCar> {
   void _deleteItem(int id) async {
     await SQLHelper.deleteSuivie(id);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text('Supprimer!'),
+      content: Text('Supprimer avec succès!'),
     ));
     _refreshSuivie();
   }
