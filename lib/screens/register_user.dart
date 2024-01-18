@@ -1,12 +1,10 @@
+import 'package:articars/repository/sql_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'register_garage.dart';
 
 class UserRegister extends StatefulWidget {
   const UserRegister({super.key});
-
-  // final String token;
-  // const UserRegister({super.key, required this.token});
 
   @override
   State<UserRegister> createState() => _UserRegisterState();
@@ -79,10 +77,7 @@ class _UserRegisterState extends State<UserRegister> {
             ),
             const SizedBox(height: 160.0),
             ElevatedButton.icon(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (ctx) => const GarageRegister()));
-              },
+              onPressed: _validateFields,
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size(270, 50),
                 backgroundColor: const Color.fromARGB(255, 26, 56, 205),
@@ -103,5 +98,35 @@ class _UserRegisterState extends State<UserRegister> {
         ),
       ),
     );
+  }
+
+  void _validateFields() {
+    if (_firstnameController.text.isEmpty ||
+        _secondnameController.text.isEmpty ||
+        _compagnieController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Veuillez remplir tous les champs obligatoires'),
+        ),
+      );
+    } else {
+      // Si tous les champs sont remplis
+      _addItem();
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (ctx) => const GarageRegister()),
+      );
+    }
+  }
+
+  Future<void> _addItem() async {
+    await SQLHelper.createUser(
+        _firstnameController.text,
+        _secondnameController.text,
+        _compagnieController.text,
+        null,
+        null,
+        null,
+        null,
+        null);
   }
 }

@@ -37,11 +37,29 @@ class SQLHelper {
     await database.execute("""CREATE TABLE users(
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         userFirstName TEXT,
+        userLastName TEXT,
         userAddress TEXT,
         userLocation TEXT,
         userResponsible TEXT,
         userPhone TEXT,
+        userSociety TEXT,
         userFax TEXT,
+        createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+      )
+      """);
+  }
+
+  static Future<void> createGarageTable(sql.Database database) async {
+    await database.execute("""CREATE TABLE garages(
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        name TEXT,
+        Address TEXT,
+        location TEXT,
+        responsible TEXT,
+        phone TEXT,
+        type INT,
+        fax TEXT,
         createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
@@ -52,6 +70,7 @@ class SQLHelper {
     await createSuivieTable(database);
     await createCarTable(database);
     await createUserTable(database);
+    await createGarageTable(database);
   }
 
   static Future<sql.Database> db() async {
@@ -198,4 +217,68 @@ class SQLHelper {
     final db = await SQLHelper.db();
     return db.query('users', orderBy: "id");
   }
+
+  static Future<int> createUser(
+    String userFirstName,
+    String userLastName,
+    String userSociety,
+    String? userAddress,
+    String? userLocation,
+    String? userResponsible,
+    String? userPhone,
+    String? userFax,
+  ) async {
+    final db = await SQLHelper.db();
+
+    final data = {
+      'userFirstName': userFirstName,
+      'userLastName': userLastName,
+      'userSociety': userSociety,
+      'userAddress': userAddress ?? '',
+      'userLocation': userLocation ?? '',
+      'userResponsible': userResponsible ?? '',
+      'userPhone': userPhone ?? '',
+      'userFax': userFax ?? '',
+      'createdAt': DateTime.now().toString(),
+    };
+    final id = await db.insert(
+      'users',
+      data,
+      conflictAlgorithm: sql.ConflictAlgorithm.replace,
+    );
+    return id;
+  }
+
+  // Read a single item by id
+  static Future<User?> getUser(int id) async {
+    final db = await SQLHelper.db();
+
+    final List<Map<String, dynamic>> results = await db.query(
+      'users',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    if (results.isNotEmpty) {
+      return User(
+        id: results[0]['id'],
+        userFirstName: results[0]['userFirstName'],
+        userLastName: results[0]['userLastName'],
+      );
+    } else {
+      return null;
+    }
+  }
+}
+
+class User {
+  final int id;
+  final String userFirstName;
+  final String userLastName;
+
+  User({
+    required this.id,
+    required this.userFirstName,
+    required this.userLastName,
+  });
 }
