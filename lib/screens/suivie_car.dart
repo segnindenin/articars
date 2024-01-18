@@ -57,70 +57,106 @@ class _SuivieCarState extends State<SuivieCar> {
     }
 
     showModalBottomSheet(
-        context: context,
-        elevation: 5,
-        isScrollControlled: true,
-        builder: (_) => Container(
-              padding: EdgeInsets.only(
-                top: 15,
-                left: 15,
-                right: 15,
-                bottom: MediaQuery.of(context).viewInsets.bottom + 120,
+      context: context,
+      elevation: 5,
+      isScrollControlled: true,
+      builder: (_) => Container(
+        padding: EdgeInsets.only(
+          top: 15,
+          left: 15,
+          right: 15,
+          bottom: MediaQuery.of(context).viewInsets.bottom + 120,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            TextFormField(
+              controller: _typeSuivieController,
+              style: TextStyle(fontSize: 16),
+              decoration: InputDecoration(
+                hintText: 'Type',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                contentPadding: EdgeInsets.symmetric(horizontal: 16),
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  TextField(
-                    controller: _typeSuivieController,
-                    decoration: const InputDecoration(hintText: 'Type'),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    controller: _carController,
-                    decoration: const InputDecoration(hintText: 'Véhicule'),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextField(
-                    controller: _dateController,
-                    decoration: const InputDecoration(hintText: 'Date'),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextField(
-                    controller: _assuranceController,
-                    decoration: const InputDecoration(hintText: 'Assurance'),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      if (id == null) {
-                        await _addItem();
-                      }
-
-                      if (id != null) {
-                        await _updateItem(id);
-                      }
-
-                      _typeSuivieController.text = '';
-                      _carController.text = '';
-                      _dateController.text = '';
-                      _assuranceController.text = '';
-
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(id == null ? 'Ajouter' : 'Modifier'),
-                  )
-                ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              controller: _carController,
+              style: TextStyle(fontSize: 16),
+              decoration: InputDecoration(
+                hintText: 'Véhicule',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                contentPadding: EdgeInsets.symmetric(horizontal: 16),
               ),
-            ));
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              controller: _dateController,
+              style: TextStyle(fontSize: 16),
+              decoration: InputDecoration(
+                hintText: 'Date',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                contentPadding: EdgeInsets.symmetric(horizontal: 16),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              controller: _assuranceController,
+              style: TextStyle(fontSize: 16),
+              decoration: InputDecoration(
+                hintText: 'Assurance',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                contentPadding: EdgeInsets.symmetric(horizontal: 16),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                if (id == null) {
+                  await _addItem();
+                }
+
+                if (id != null) {
+                  await _updateItem(id);
+                }
+
+                _typeSuivieController.text = '';
+                _carController.text = '';
+                _dateController.text = '';
+                _assuranceController.text = '';
+
+                Navigator.of(context).pop();
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+                minimumSize: Size(100, 50),
+              ),
+              child: Text(
+                id == null ? 'Ajouter' : 'Modifier',
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Future<void> _addItem() async {
@@ -165,156 +201,163 @@ class _SuivieCarState extends State<SuivieCar> {
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
-          : SingleChildScrollView(
-              child: Column(
-                children: _suivies.map((suivie) {
-                  return SizedBox(
-                    width: double.infinity,
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          width: 365,
-                          height: 200,
-                          margin: const EdgeInsets.all(2),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: const Color.fromARGB(255, 229, 219, 219),
-                              width: 2,
-                              style: BorderStyle.solid,
-                            ),
-                          ),
-                          child: Stack(
-                            children: [
-                              Container(
-                                height: 50,
-                                decoration: const BoxDecoration(
-                                  color: Color.fromARGB(255, 6, 91, 248),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10),
-                                  ),
+          : _suivies.isEmpty
+              ? const Center(child: Text('Aucune suivies disponibles'))
+              : SingleChildScrollView(
+                  child: Column(
+                    children: _suivies.map((suivie) {
+                      return SizedBox(
+                        width: double.infinity,
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              width: 365,
+                              height: 200,
+                              margin: const EdgeInsets.all(2),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  color:
+                                      const Color.fromARGB(255, 229, 219, 219),
+                                  width: 2,
+                                  style: BorderStyle.solid,
                                 ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const SizedBox(
-                                      width: 70,
-                                    ),
-                                    Text(
-                                      suivie['typeSuivie'],
-                                      style: TextStyle(
-                                          fontSize: 22, color: Colors.white),
-                                    ),
-                                    IconButton(
-                                      iconSize: 40,
-                                      onPressed: () =>
-                                          _confirmDeleteDialog(suivie['id']),
-                                      icon: const Icon(
-                                        Icons.delete,
-                                        color: Colors.white,
+                              ),
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    height: 50,
+                                    decoration: const BoxDecoration(
+                                      color: Color.fromARGB(255, 6, 91, 248),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10),
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                top: 25,
-                                left: 25,
-                                child: CircleAvatar(
-                                  backgroundImage: NetworkImage(
-                                      'https://images.caradisiac.com/images/5/7/3/6/205736/S0-quelle-sera-la-voiture-de-l-annee-2024-780687.jpg'),
-                                ),
-                              ),
-                              Positioned(
-                                top: 60,
-                                left: 250,
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.directions_car),
-                                    Text(
-                                      'AA 345 AC',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                top: 80,
-                                left: 25,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'numero de la police',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      '5e5a23e9-1761-4a17-ad2b-6f57ed79e3c9',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    Row(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        SizedBox(
-                                          width: 200,
+                                        const SizedBox(
+                                          width: 70,
                                         ),
                                         Text(
-                                          suivie['assurance'],
+                                          suivie['typeSuivie'],
                                           style: TextStyle(
-                                              fontWeight: FontWeight.w500),
+                                              fontSize: 22,
+                                              color: Colors.white),
+                                        ),
+                                        IconButton(
+                                          iconSize: 40,
+                                          onPressed: () => _confirmDeleteDialog(
+                                              suivie['id']),
+                                          icon: const Icon(
+                                            Icons.delete,
+                                            color: Colors.white,
+                                          ),
                                         ),
                                       ],
                                     ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                  ),
+                                  Positioned(
+                                    top: 25,
+                                    left: 25,
+                                    child: CircleAvatar(
+                                      backgroundImage: NetworkImage(
+                                          'https://images.caradisiac.com/images/5/7/3/6/205736/S0-quelle-sera-la-voiture-de-l-annee-2024-780687.jpg'),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 60,
+                                    left: 250,
+                                    child: Row(
                                       children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                        Icon(Icons.directions_car),
+                                        Text(
+                                          'AA 345 AC',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 80,
+                                    left: 25,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'numero de la police',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          '5e5a23e9-1761-4a17-ad2b-6f57ed79e3c9',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        Row(
                                           children: [
-                                            const Text('Emission'),
+                                            SizedBox(
+                                              width: 200,
+                                            ),
                                             Text(
-                                              formatDate(suivie['createdAt']),
-                                              style: const TextStyle(
-                                                  fontSize: 18,
+                                              suivie['assurance'],
+                                              style: TextStyle(
                                                   fontWeight: FontWeight.w500),
                                             ),
                                           ],
                                         ),
-                                        SizedBox(
-                                          width: 90,
-                                        ),
-                                        ElevatedButton.icon(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.blue,
-                                          ),
-                                          onPressed: () {},
-                                          icon:
-                                              const Icon(Icons.calendar_month),
-                                          label: Text(suivie['date']),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                const Text('Emission'),
+                                                Text(
+                                                  formatDate(
+                                                      suivie['createdAt']),
+                                                  style: const TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              width: 90,
+                                            ),
+                                            ElevatedButton.icon(
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: Colors.blue,
+                                              ),
+                                              onPressed: () {},
+                                              icon: const Icon(
+                                                  Icons.calendar_month),
+                                              label: Text(suivie['date']),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
+                      );
+                    }).toList(),
+                  ),
+                ),
       floatingActionButton: FloatingActionButton.extended(
           backgroundColor: backb,
           onPressed: () => _showForm(null),
