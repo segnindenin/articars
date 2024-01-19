@@ -1,4 +1,3 @@
-import 'package:articars/model/User.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'register_car.dart';
@@ -161,7 +160,7 @@ class _GarageRegisterState extends State<GarageRegister> {
         _phoneController.text.isEmpty ||
         _faxController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Veuillez remplir tous les champs obligatoires'),
         ),
       );
@@ -174,16 +173,5 @@ class _GarageRegisterState extends State<GarageRegister> {
     }
   }
 
-  void _saveUserData() async {
-    UserDatabase userDatabase = UserDatabase();
-    await userDatabase.initializeDatabase();
-    await userDatabase.saveUserData(
-      firstName: _firstnameController.text,
-      address: _addressController.text,
-      location: _locationController.text,
-      responsible: _responsibleController.text,
-      phone: _phoneController.text,
-      fax: _faxController.text,
-    );
-  }
+  void _saveUserData() async {}
 }

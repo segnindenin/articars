@@ -1,4 +1,3 @@
-import 'package:articars/model/Car.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'home.dart';
@@ -227,26 +226,26 @@ class _CarRegisterState extends State<CarRegister> {
 
   // valider les informations
   void _validateFields() {
-    if (_immatriculationController.text.isEmpty ||
-        _modeleController.text.isEmpty ||
-        _typeController.text.isEmpty ||
-        _numeroController.text.isEmpty ||
-        _couleurController.text.isEmpty ||
-        _proprioController.text.isEmpty ||
-        _pneuController.text.isEmpty ||
-        _dateController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Veuillez remplir tous les champs obligatoires'),
-        ),
-      );
-    } else {
-      // Si tous les champs sont remplis
-      _saveCarData();
-      Navigator.of(context).push(
-        MaterialPageRoute(builder: (ctx) => const HomeScreen()),
-      );
-    }
+    // if (_immatriculationController.text.isEmpty ||
+    //     _modeleController.text.isEmpty ||
+    //     _typeController.text.isEmpty ||
+    //     _numeroController.text.isEmpty ||
+    //     _couleurController.text.isEmpty ||
+    //     _proprioController.text.isEmpty ||
+    //     _pneuController.text.isEmpty ||
+    //     _dateController.text.isEmpty) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     const SnackBar(
+    //       content: Text('Veuillez remplir tous les champs obligatoires'),
+    //     ),
+    //   );
+    // } else {
+    // Si tous les champs sont remplis
+    _saveCarData();
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (ctx) => const HomeScreen()),
+    );
+    // }
   }
 
   void _saveCarData() async {

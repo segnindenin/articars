@@ -1,3 +1,6 @@
+import 'package:articars/repository/sql_helper.dart';
+import 'package:articars/screens/home.dart';
+import 'package:articars/screens/suivie_car.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,6 +14,21 @@ class Intro extends StatefulWidget {
 }
 
 class _IntroState extends State<Intro> {
+  List<Map<String, dynamic>> _user = [];
+
+  void _refreshUser() async {
+    final data = await SQLHelper.getUsers();
+    setState(() {
+      _user = data;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _refreshUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,27 +65,49 @@ class _IntroState extends State<Intro> {
             const SizedBox(
               height: 100,
             ),
-            ElevatedButton.icon(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (ctx) => const UserRegister()));
-              },
-              style: ElevatedButton.styleFrom(
-                fixedSize: const Size(270, 50),
-                backgroundColor: const Color.fromARGB(255, 26, 56, 205),
-              ),
-              icon: const Icon(
-                Icons.skip_next,
-                color: Colors.white,
-              ),
-              label: Text(
-                "Acceder au carnet",
-                style: GoogleFonts.openSans(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+            _user.isEmpty
+                ? ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => const UserRegister()));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(270, 50),
+                      backgroundColor: const Color.fromARGB(255, 26, 56, 205),
+                    ),
+                    icon: const Icon(
+                      Icons.skip_next,
+                      color: Colors.white,
+                    ),
+                    label: Text(
+                      "Acceder au carnet",
+                      style: GoogleFonts.openSans(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  )
+                : ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => const HomeScreen()));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(270, 50),
+                      backgroundColor: const Color.fromARGB(255, 26, 56, 205),
+                    ),
+                    icon: const Icon(
+                      Icons.skip_next,
+                      color: Colors.white,
+                    ),
+                    label: Text(
+                      "Acceder au carnet",
+                      style: GoogleFonts.openSans(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
             const SizedBox(
               height: 25,
             ),

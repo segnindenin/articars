@@ -1,3 +1,4 @@
+import 'package:articars/repository/sql_helper.dart';
 import 'package:flutter/material.dart';
 import 'cart_health.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,7 +15,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late String token = '';
+  User? currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    SQLHelper.getUser(1).then((user) {
+      setState(() {
+        currentUser = user;
+      });
+    });
+  }
 
   var backc = const Color.fromARGB(255, 237, 235, 229);
   var backb = const Color.fromARGB(255, 111, 187, 215);
@@ -58,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             backgroundImage: AssetImage('assets/image.jpg'),
                           ),
                         ),
-                        const SizedBox(height: 8.0),
+                        SizedBox(height: 8.0),
                         const Text(
                           'Bienvenu, HENRI',
                           style: TextStyle(
