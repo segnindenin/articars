@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:articars/repository/sql_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SuivieCar extends StatefulWidget {
   const SuivieCar({super.key});
@@ -43,6 +46,10 @@ class _SuivieCarState extends State<SuivieCar> {
   final TextEditingController _carController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _assuranceController = TextEditingController();
+  final TextEditingController _policeController = TextEditingController();
+
+  File? _image;
+  late ImagePicker _picker;
 
   void _showForm(int? id) async {
     if (id != null) {
@@ -55,6 +62,7 @@ class _SuivieCarState extends State<SuivieCar> {
       _dateController.text = existingJournal['date'];
       _assuranceController.text = existingJournal['assurance'];
     }
+    _picker = ImagePicker();
 
     showModalBottomSheet(
       context: context,
@@ -73,13 +81,13 @@ class _SuivieCarState extends State<SuivieCar> {
           children: [
             TextFormField(
               controller: _typeSuivieController,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
               decoration: InputDecoration(
                 hintText: 'Type',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
               ),
             ),
             const SizedBox(
@@ -87,13 +95,13 @@ class _SuivieCarState extends State<SuivieCar> {
             ),
             TextFormField(
               controller: _carController,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
               decoration: InputDecoration(
                 hintText: 'Véhicule',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
               ),
             ),
             const SizedBox(
@@ -101,13 +109,27 @@ class _SuivieCarState extends State<SuivieCar> {
             ),
             TextFormField(
               controller: _dateController,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
               decoration: InputDecoration(
                 hintText: 'Date',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              controller: _policeController,
+              style: const TextStyle(fontSize: 16),
+              decoration: InputDecoration(
+                hintText: 'Numero de la police',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
               ),
             ),
             const SizedBox(
@@ -115,14 +137,30 @@ class _SuivieCarState extends State<SuivieCar> {
             ),
             TextFormField(
               controller: _assuranceController,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
               decoration: InputDecoration(
                 hintText: 'Assurance',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
               ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                final pickedFile =
+                    await _picker.pickImage(source: ImageSource.gallery);
+
+                if (pickedFile != null) {
+                  setState(() {
+                    _image = File(pickedFile.path);
+                  });
+                }
+              },
+              child: const Text("Sélectionner une image"),
             ),
             const SizedBox(
               height: 20,
@@ -141,6 +179,7 @@ class _SuivieCarState extends State<SuivieCar> {
                 _carController.text = '';
                 _dateController.text = '';
                 _assuranceController.text = '';
+                _policeController.text = '';
 
                 Navigator.of(context).pop();
               },
@@ -161,22 +200,24 @@ class _SuivieCarState extends State<SuivieCar> {
 
   Future<void> _addItem() async {
     await SQLHelper.createSuivie(
-      _typeSuivieController.text,
-      _carController.text,
-      _dateController.text,
-      _assuranceController.text,
-    );
+        _typeSuivieController.text,
+        _carController.text,
+        _dateController.text,
+        _assuranceController.text,
+        _policeController.text,
+        _image?.path);
     _refreshSuivie();
   }
 
   Future<void> _updateItem(int id) async {
     await SQLHelper.updateSuivie(
-      id,
-      _typeSuivieController.text,
-      _carController.text,
-      _dateController.text,
-      _assuranceController.text,
-    );
+        id,
+        _typeSuivieController.text,
+        _carController.text,
+        _dateController.text,
+        _assuranceController.text,
+        _policeController.text,
+        _image?.path);
     _refreshSuivie();
   }
 
@@ -243,7 +284,7 @@ class _SuivieCarState extends State<SuivieCar> {
                                         ),
                                         Text(
                                           suivie['typeSuivie'],
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontSize: 22,
                                               color: Colors.white),
                                         ),
@@ -259,23 +300,22 @@ class _SuivieCarState extends State<SuivieCar> {
                                       ],
                                     ),
                                   ),
-                                  Positioned(
-                                    top: 25,
-                                    left: 25,
-                                    child: CircleAvatar(
-                                      backgroundImage: NetworkImage(
-                                          'https://images.caradisiac.com/images/5/7/3/6/205736/S0-quelle-sera-la-voiture-de-l-annee-2024-780687.jpg'),
-                                    ),
+                                  SizedBox(
+                                    width: 200,
+                                    height: 200,
+                                    child: _image != null
+                                        ? Image.file(_image!, fit: BoxFit.cover)
+                                        : const Placeholder(),
                                   ),
                                   Positioned(
                                     top: 60,
                                     left: 250,
                                     child: Row(
                                       children: [
-                                        Icon(Icons.directions_car),
+                                        const Icon(Icons.directions_car),
                                         Text(
-                                          'AA 345 AC',
-                                          style: TextStyle(
+                                          suivie['car'],
+                                          style: const TextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -289,26 +329,26 @@ class _SuivieCarState extends State<SuivieCar> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          'numero de la police',
+                                        const Text(
+                                          'Numéro de la police',
                                           style: TextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(
-                                          '5e5a23e9-1761-4a17-ad2b-6f57ed79e3c9',
-                                          style: TextStyle(
+                                          suivie['police_number'],
+                                          style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w500),
                                         ),
                                         Row(
                                           children: [
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 200,
                                             ),
                                             Text(
                                               suivie['assurance'],
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.w500),
                                             ),
                                           ],
@@ -332,7 +372,7 @@ class _SuivieCarState extends State<SuivieCar> {
                                                 ),
                                               ],
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 90,
                                             ),
                                             ElevatedButton.icon(
