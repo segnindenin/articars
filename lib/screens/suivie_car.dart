@@ -24,6 +24,8 @@ class _SuivieCarState extends State<SuivieCar> {
   void _refreshSuivie() async {
     final data = await SQLHelper.getSuivies();
 
+    print(data);
+
     setState(() {
       _suivies = data;
       _isLoading = false;
@@ -300,12 +302,17 @@ class _SuivieCarState extends State<SuivieCar> {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 200,
-                                    height: 200,
-                                    child: _image != null
-                                        ? Image.file(_image!, fit: BoxFit.cover)
-                                        : const Placeholder(),
+                                  Positioned(
+                                    top: 25,
+                                    left: 25,
+                                    child: CircleAvatar(
+                                      backgroundImage: suivie['imagePath'] !=
+                                              null
+                                          ? FileImage(File(suivie['image']))
+                                          : const AssetImage('assets/image.jpg')
+                                              as ImageProvider,
+                                      radius: 25,
+                                    ),
                                   ),
                                   Positioned(
                                     top: 60,
