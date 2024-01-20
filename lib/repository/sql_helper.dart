@@ -27,6 +27,8 @@ class SQLHelper {
         car TEXT,
         date TEXT,
         assurance TEXT,
+        police_number TEXT,
+        image TEXT,
         createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
@@ -164,8 +166,8 @@ class SQLHelper {
 
   // SUIVIE
 
-  static Future<int> createSuivie(
-      String typeSuivie, String car, String date, String assurance) async {
+  static Future<int> createSuivie(String typeSuivie, String car, String date,
+      String assurance, String policeNumber, String? image) async {
     final db = await SQLHelper.db();
 
     final data = {
@@ -173,6 +175,8 @@ class SQLHelper {
       'car': car,
       'date': date,
       'assurance': assurance,
+      'police_number': policeNumber,
+      'image': image,
       'createdAt': DateTime.now().toString()
     };
     final id = await db.insert('suivies', data,
@@ -186,7 +190,7 @@ class SQLHelper {
   }
 
   static Future<int> updateSuivie(int id, String typeSuivie, String car,
-      String date, String assurance) async {
+      String date, String assurance, String policeNumber, String? image) async {
     final db = await SQLHelper.db();
 
     final data = {
@@ -194,6 +198,8 @@ class SQLHelper {
       'car': car,
       'date': date,
       'assurance': assurance,
+      'police_number': policeNumber,
+      'image': image,
       'updatedAt': DateTime.now().toString()
     };
 
