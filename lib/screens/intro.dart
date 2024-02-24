@@ -1,8 +1,6 @@
 import 'package:articars/repository/sql_helper.dart';
 import 'package:articars/screens/home.dart';
-// import 'package:articars/screens/suivie_car.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'register_user.dart';
 
