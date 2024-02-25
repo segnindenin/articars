@@ -24,7 +24,7 @@ class _SuivieCarState extends State<SuivieCar> {
   void _refreshSuivie() async {
     final data = await SQLHelper.getSuivies();
 
-    print(data);
+    // debugPrint(data as String?);
 
     setState(() {
       _suivies = data;
@@ -186,12 +186,12 @@ class _SuivieCarState extends State<SuivieCar> {
                 Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.blue,
+                backgroundColor : Colors.blue,
                 minimumSize: Size(100, 50),
               ),
               child: Text(
                 id == null ? 'Ajouter' : 'Modifier',
-                style: TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 18),
               ),
             ),
           ],

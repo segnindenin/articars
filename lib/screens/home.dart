@@ -118,112 +118,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisCount: 2,
                 childAspectRatio: (1 / .8),
                 children: <Widget>[
-                  InkWell(
-                    child: Container(
-                        padding: const EdgeInsets.all(8),
-                        color: backc,
-                        child: Column(
-                          children: [
-                            const Icon(
-                              Icons.text_snippet_sharp,
-                              size: 70,
-                              color: Color.fromARGB(255, 111, 187, 215),
-                            ),
-                            Text(
-                              'Suivie',
-                              style: GoogleFonts.openSans(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: const Color.fromARGB(255, 111, 187, 215),
-                              ),
-                            )
-                          ],
-                        )),
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => const SuivieCar()));
-                      debugPrint("Tapped on container Suivie");
-                    },
+                  _functionality(
+                      icon: Icons.text_snippet_sharp,
+                      functName: 'Suivie',
+                      moveToScreen: () => const SuivieCar()),
+                  _functionality(
+                      icon: Icons.recycling,
+                      functName: 'Entretien',
+                      moveToScreen: () => const CartHealth()),
+                  _functionality(
+                      icon: Icons.local_gas_station,
+                      functName: 'Carburant',
+                      moveToScreen: () => const CarGas()),
+                  _functionality(
+                    icon: Icons.settings_outlined,
+                    functName: 'Autre',
                   ),
-                  InkWell(
-                    child: Container(
-                        padding: const EdgeInsets.all(8),
-                        color: backc,
-                        child: Column(
-                          children: [
-                            const Icon(
-                              Icons.recycling,
-                              size: 70,
-                              color: Color.fromARGB(255, 111, 187, 215),
-                            ),
-                            Text(
-                              'Entretien',
-                              style: GoogleFonts.openSans(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: const Color.fromARGB(255, 111, 187, 215),
-                              ),
-                            )
-                          ],
-                        )),
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => const CartHealth()));
-                      debugPrint("Tapped on container Entretien");
-                    },
-                  ),
-                  InkWell(
-                    child: Container(
-                        padding: const EdgeInsets.all(8),
-                        color: backc,
-                        child: Column(
-                          children: [
-                            const Icon(
-                              Icons.local_gas_station,
-                              size: 70,
-                              color: Color.fromARGB(255, 111, 187, 215),
-                            ),
-                            Text(
-                              'Carburant',
-                              style: GoogleFonts.openSans(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: const Color.fromARGB(255, 111, 187, 215),
-                              ),
-                            )
-                          ],
-                        )),
-                    onTap: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (ctx) => const CarGas()));
-                      debugPrint("Tapped on container Carburant");
-                    },
-                  ),
-                  InkWell(
-                    child: Container(
-                        padding: const EdgeInsets.all(8),
-                        color: backc,
-                        child: Column(
-                          children: [
-                            const Icon(
-                              Icons.settings_outlined,
-                              size: 70,
-                              color: Color.fromARGB(255, 111, 187, 215),
-                            ),
-                            Text(
-                              'Autre',
-                              style: GoogleFonts.openSans(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: const Color.fromARGB(255, 111, 187, 215),
-                              ),
-                            )
-                          ],
-                        )),
-                    onTap: () {
-                      debugPrint("Tapped on container Autre");
-                    },
-                  ),
+                  
                 ],
               ),
             ),
@@ -233,6 +144,39 @@ class _HomeScreenState extends State<HomeScreen> {
           ]),
         ),
       ),
+    );
+  }
+
+  Widget _functionality(
+      {required IconData icon,
+      required String functName,
+      Widget Function()? moveToScreen}) {
+    return InkWell(
+      child: Container(
+          padding: const EdgeInsets.all(8),
+          color: backc,
+          child: Column(
+            children: [
+              Icon(
+                icon,
+                size: 70,
+                color: const Color.fromARGB(255, 111, 187, 215),
+              ),
+              Text(
+                functName,
+                style: GoogleFonts.openSans(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: const Color.fromARGB(255, 111, 187, 215),
+                ),
+              )
+            ],
+          )),
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (ctx) => moveToScreen!()));
+        debugPrint("Tapped on container $functName");
+      },
     );
   }
 }
