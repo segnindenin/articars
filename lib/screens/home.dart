@@ -70,10 +70,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         SizedBox(height: 8.0),
-                        const Text(
-                          'Bienvenu, HENRI',
-                          style: TextStyle(
-                            fontSize: 25.0,
+                        Text(
+                          currentUser != null
+                              ? 'Bienvenu, ${currentUser!.userFirstName} ${currentUser!.userLastName}'
+                              : 'Chargement...',
+                          style: const TextStyle(
+                            fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
@@ -134,7 +136,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: Icons.settings_outlined,
                     functName: 'Autre',
                   ),
-                  
                 ],
               ),
             ),
