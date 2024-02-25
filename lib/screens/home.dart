@@ -175,9 +175,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           )),
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (ctx) => moveToScreen!()));
-        debugPrint("Tapped on container $functName");
+        if (moveToScreen != null) {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (ctx) => moveToScreen()));
+        } else {
+          debugPrint("Tapped on container $functName");
+        }
       },
     );
   }

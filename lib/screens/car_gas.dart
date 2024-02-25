@@ -236,7 +236,7 @@ class _CarGasState extends State<CarGas> {
                     ),
                   ),
                   const Text(
-                    'Listes de regargement effectuées',
+                    'Listes de rechargement effectuées',
                   ),
                   Container(
                       width: 365,
