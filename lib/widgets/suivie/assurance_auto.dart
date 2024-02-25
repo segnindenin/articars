@@ -20,7 +20,7 @@ class _AssuranceAutoListsState extends State<AssuranceAutoLists> {
       appBar: AppBar(
         backgroundColor: backb,
         title: Text(
-          'Assurance Auto',
+          'Historique Assurance',
           style: GoogleFonts.openSans(
               fontSize: 23, color: Colors.white, fontWeight: FontWeight.w500),
         ),
@@ -29,7 +29,7 @@ class _AssuranceAutoListsState extends State<AssuranceAutoLists> {
         child: Center(
           child: Column(children: [
             SizedBox(
-              width: 365,
+              width: 360,
               height: 180 * 5,
               child: Column(
                 children: <Widget>[
@@ -56,7 +56,7 @@ class _AssuranceAutoListsState extends State<AssuranceAutoLists> {
   Widget customList(String? date) {
     return Container(
         width: 365,
-        height: 180,
+        height: 170,
         margin: const EdgeInsets.all(3),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -67,78 +67,69 @@ class _AssuranceAutoListsState extends State<AssuranceAutoLists> {
           padding: const EdgeInsets.all(5),
           child: Column(
             children: [
-              const Positioned(
-                  top: 60,
-                  left: 250,
-                  child: Row(
+              const Row(
+                children: [
+                  Icon(Icons.directions_car),
+                  Text(
+                    'AA 345 AC',
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'numero de la police',
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
+                  const Text(
+                    '5e5a23e9-1761-4a17-ad2b-6f57ed79e3c9',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  const Divider(
+                    color: Color.fromARGB(255, 100, 98, 98),
+                    indent: 10,
+                    endIndent: 10,
+                  ),
+                  const Row(
                     children: [
-                      Icon(Icons.directions_car),
+                      SizedBox(
+                        width: 200,
+                      ),
                       Text(
-                        'AA 345 AC',
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                        'SANLAM Assurance',
+                        style: TextStyle(fontWeight: FontWeight.w500),
                       )
                     ],
-                  )),
-              Positioned(
-                  top: 80,
-                  left: 25,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Text(
-                        'numero de la police',
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
-                      ),
-                      const Text(
-                        '5e5a23e9-1761-4a17-ad2b-6f57ed79e3c9',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w500),
-                      ),
-                      const Divider(
-                        color: Color.fromARGB(255, 100, 98, 98),
-                        indent: 10,
-                        endIndent: 10,
-                      ),
-                      const Row(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            width: 200,
-                          ),
-                          Text(
-                            'SANLAM Assurance',
-                            style: TextStyle(fontWeight: FontWeight.w500),
-                          )
+                          const Text('Emission'),
+                          Text('$date',
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w500))
                         ],
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text('Emission'),
-                              Text('$date',
-                                  style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500))
-                            ],
+                      const SizedBox(
+                        width: 90,
+                      ),
+                      ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue,
                           ),
-                          const SizedBox(
-                            width: 90,
-                          ),
-                          ElevatedButton.icon(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue,
-                              ),
-                              onPressed: () {},
-                              icon: const Icon(Icons.calendar_month),
-                              label: const Text('2 Sept. 2023'))
-                        ],
-                      )
+                          onPressed: () {},
+                          icon: const Icon(Icons.calendar_month),
+                          label: const Text('2 Sept. 2023'))
                     ],
-                  )),
+                  )
+                ],
+              )
+              // ),
             ],
           ),
         ));

@@ -347,18 +347,18 @@ class _SuivieCarState extends State<SuivieCar> {
                         activityColor: const Color(0xFF4B39EF)),
                     _activity(
                         activityName: 'Visite Technique',
-                        moveToActivity: () => VignetteAutoLists(
-                              showVignetteForm: showVignetteForm,
-                            ),
-                        date: '25 fev 2024',
-                        activityColor: const Color(0xFFFF5963)),
-                    _activity(
-                        activityName: 'Vignette Auto',
                         moveToActivity: () => VisiteAutoLists(
                               showVisiteForm: showVisiteForm,
                             ),
                         date: '25 fev 2024',
                         activityColor: const Color(0xFF249689)),
+                    _activity(
+                        activityName: 'Vignette Auto',
+                        moveToActivity: () => VignetteAutoLists(
+                              showVignetteForm: showVignetteForm,
+                            ),
+                        date: '25 fev 2024',
+                        activityColor: const Color(0xFFFF5963)),
                     _activity(
                         activityName: 'Vignette Commerciale',
                         date: '25 fev 2024',
@@ -413,7 +413,7 @@ class _SuivieCarState extends State<SuivieCar> {
                     ),
                     Text(
                       activityName,
-                      style: const TextStyle(fontSize: 22, color: Colors.white),
+                      style: const TextStyle(fontSize: 20, color: Colors.white),
                     ),
                     IconButton(
                         iconSize: 40,
